@@ -1,4 +1,4 @@
-import {h1, p, div, h5} from '../library/domp.js';
+import { h1, p, div, h5 } from '../library/domp.js';
 import { blue, image, white } from './setting.js';
 var fieturDes = div()
     .child(
@@ -59,12 +59,13 @@ for (let i = 0; i < 3; i++) {
 }
 
 export const feature = div()
-        .id('feature')
-        .bgImg(image + 'bgfeature.png')
-        .bgRepeat('no-repeat')
-        .bgPosition('bottom')
-        .child(
-            div()
-                .class('container').height('100vh')
-                .row(dataRowFitur)
-        )
+    .id('feature')
+    .bgImg(image + 'bgfeature.png')
+    .bgRepeat('no-repeat')
+    .bgSize('contain')
+    .bgPosition('bottom')
+    .child(
+        div()
+            .class('container').height('100vh')
+            .row(dataRowFitur)
+    )

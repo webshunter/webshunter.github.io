@@ -1,62 +1,47 @@
 import { btn, div, p, domp, a, h1, h3, input, img, h4, form, label } from '../library/domp.js';
-import { blue, image, white } from './setting.js';
+import { blue, image, white, headText, titleHead, jasaKami, sosmed as sos, navData } from './setting.js';
 import {iconSosmed} from '../library/font/awesome.js'
 
 var identyty = div()
 .child(
-    h3().text('U - utbk')
+    h3().text(titleHead)
 )
 .child(
-    p().text('Layanan pembelajaran online persiapan utbk dengan bank soal , pretest dan pembahasan soal serta mentor yang berpengalan siap membantu anda. ')
+    p().text(headText)
 )
 
 var feature = div()
     .child(
-        h3().text('Feature')
+        h3().text('Jasa Kami')
     )
-    .child(
-        p().text('Bank Soal').margin('0').mb('5px')
+jasaKami.forEach(function(element){
+    feature.child(
+            p().text(element.title).margin('0').mb('5px')
     )
-    .child(
-        p().text('Pretest dan pembahasan').margin('0').mb('5px')
-    )
-    .child(
-        p().text('Mentor Support').margin('0').mb('5px')
-    )
+},feature)
 
 var utbk = div()
     .child(
         h3().text('Menu')
     )
-    .child(
-        p().text('Home').margin('0').mb('5px')
-    )
-    .child(
-        p().text('Feature').margin('0').mb('5px')
-    )
-    .child(
-        p().text('About').margin('0').mb('5px')
-    )
+    navData.forEach(function (element, i) {
+        utbk.child(
+            p().text(element.title).margin('0').mb('5px')
+        )
+    }, sosmed);
+
 
 var sosmed = div()
     .child(
         h3().text('Sosmed')
     )
-    .child(
-        p().margin('0').mb('5px').child(
-            iconSosmed('facebook').text(' Facebook').margin('0').mb('5px')
+    sos.forEach(function(element, i){
+        sosmed.child(
+            a().display('block').color(white).margin('0').mb('5px').href(element.link).child(
+                iconSosmed(element.icon).text(' '+element.nama).margin('0').mb('5px')
+            )
         )
-    )
-    .child(
-        p().margin('0').mb('5px').child(
-            iconSosmed('twitter').text(' Twitter').margin('0').mb('5px')
-        )
-    )
-    .child(
-        p().margin('0').mb('5px').child(
-            iconSosmed('whatsapp').text(' Whatsapp').margin('0').mb('5px')
-        )
-    )
+    },sosmed);
 
 export const footer = div()
     .child(

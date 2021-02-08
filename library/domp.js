@@ -222,6 +222,10 @@ export function el(el) {
         this.el.style.height = a;
         return this;
     }
+    obj.minHeight = function (a) {
+        this.el.style.minHeight = a;
+        return this;
+    }
     obj.placeholder = function (a) {
         this.el.setAttribute('placeholder', a);
         return this;
@@ -277,7 +281,7 @@ export function el(el) {
             b = '';
         }
         var d = div()
-            .class('row '+ b)
+            .class('row ' + b)
         a.forEach(function (elm) {
             d.child(
                 div().class(elm['class']).child(elm['content'])
@@ -466,6 +470,9 @@ export function tbody() {
 }
 export function form() {
     return el('FORM');
+}
+export function ol() {
+    return el('ol');
 }
 export function ul() {
     return el('ul');

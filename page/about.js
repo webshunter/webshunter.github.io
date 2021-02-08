@@ -29,7 +29,7 @@ export const about = div().css('position', 'relative')
                                                     h1().text('About')
                                                 )
                                                 .child(
-                                                    p().text('U - utbk merupakan lembaga penyedia pelatihan soal persiapan utbk untuk siswa tingkat dasar dan menengah, dimana siswa akan di beri soal latihan secara electronik yang bisa dibuka kapan saja dan dimana saja, serta pretest dan pembahasannya')
+                                                    p().text('Kami adalah jasa pembuatan website berpengalaman yang siap membuat website yang terbaik untuk anda. Selain itu kami juga menerima perbaikan website dan penambahan fitur.')
                                                 )
                                             )
                                         },
