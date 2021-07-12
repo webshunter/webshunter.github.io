@@ -46,11 +46,112 @@
         
     </div>
     <script src="./bt4/jquery.js"></script>
-    <script src="./file2.js" type="module"></script>
-    <script src="./bt4/popper.js"></script>
-    <script src="./bt4/boostrap.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHF8G92CN5"></script>
+    
+    <script src="./require.js" charset="utf-8"></script>
+		<script src="./config.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			require([
+				'sammy',
+				'page/dashboard',
+				'page/dashboardsiswa',
+				'page/guru/login',
+				'page/guru/daftar',
+				'page/siswa/daftarsiswa',
+				'page/ruangguru',
+				'page/guru/ruangkelas',
+				'page/guru/kelas',
+				'page/guru/soal',
+				'page/siswa/loginsiswa',
+				'page/siswa/pilihguru',
+				'page/siswa/kelasSiswa',
+				'page/siswa/kelasSiswaSoal',
+				'page/siswa/kelasSiswaSoalLatihan',
+				'page/guru/laporanHasilBelajar',
+				'page/guru/laporanNilaiSiswa',
+				'page/guru/laporanNilaiSiswaMapel',
+				'page/guru/laporanNilaiSiswaMapelSoal',
+				'action/click',
+				'action/firebaseAct'
+			], function(sammy, dashboard, dashboardsiswa, login, daftar, daftarsiswa, ruangguru, ruangkelas, kelas, soal, loginsiswa, pilihguru, kelasSiswa, kelasSiswaSoal, kelasSiswaSoalLatihan, laporanHasilBelajar, laporanNilaiSiswa
+				, laporanNilaiSiswaMapel, laporanNilaiSiswaMapelSoal){
+					var app = sammy(function() {
+						// master data release
+						this.get('#/', function() {
+							dashboard.view();
+						});
+						this.get('#/pop3', function() {
+							dashboard.pop();
+						});
+						this.get('#/guru/login', function() {
+							login.view();
+						});
+						this.get('#/siswa/login', function() {
+							loginsiswa.view();
+						});
+						this.get('#/guru/daftar', function() {
+							daftar.view();
+						});
+
+						this.get('#/siswa/daftar', function() {
+							daftarsiswa.view();
+						});
+						this.get('#/ruang-guru', function() {
+							ruangguru.view();
+						});
+						this.get('#/ruang-guru/ruang-kelas', function() {
+							ruangkelas.view();
+						});
+						this.get('#/ruang-guru/kelas/:kelas', function() {
+							let id = this.params['kelas'];
+                            kelas.view(id);
+						});
+						this.get('#/ruang-guru/soal-latihan/:kelas/:soal', function() {
+							let a = this.params['kelas'];
+							let b = this.params['soal'];
+                            soal.view(a, b);
+						});
+						this.get('#/siswa/pilih-guru/', function() {
+							pilihguru.view();
+						});
+						this.get('#/siswa-kelas/:guru', function() {
+							let a = this.params['guru'];
+							kelasSiswa.view(a);
+						});
+						this.get('#/siswa-kelas-soal/:kelas', function() {
+							let a = this.params['kelas'];
+							kelasSiswaSoal.view(a);
+						});
+						this.get('#/siswa-kelas-latihan-soal/:soal', function() {
+							let a = this.params['soal'];
+							kelasSiswaSoalLatihan.view(a);
+						});
+						this.get('#/ruangSiswa/', function() {
+							dashboardsiswa.view();
+						});
+						this.get('#/ruang-guru/laporan-siswa', function() {
+							laporanHasilBelajar.view();
+						});
+						this.get('#/hasil-belajar-soal/:data', function() {
+							let a = this.params['data'];
+							laporanNilaiSiswa.view(a);
+						});
+						this.get('#/hasil-belajar-soal-mapel/:data/:key', function() {
+							let a = this.params['data'];
+							let b = this.params['key'];
+							laporanNilaiSiswaMapel.view(a, b);
+						});
+						this.get('#/hasil-belajar-soal-mapel-data/:data', function() {
+							let a = this.params['data'];
+							laporanNilaiSiswaMapelSoal.view(a);
+						});
+					});
+					app.run("#/");
+			});
+		</script>
+    
+    
 </body>
 
 </html>
