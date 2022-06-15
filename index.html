@@ -1,159 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Kami adalah jasa pembuatan website berpengalaman yang siap membuat website yang terbaik untuk anda." name="Description" />
-    <meta content="jasa pembuatan website landing, jasa pembuatan website portofolio, jasa pembuatan website bisnis, jasa pembuatan website company profile, jasa pembuatan website app" name="Keywords" />
-    <meta name="google-site-verification" content="tbSKSe-kDx91e-JHdFg4coHMqs6gQOiVjFUnB4rtRe4" />
-    <title>Webshunter</title>
-    <link rel="stylesheet" href="./bt4/bootstrap.min.css">
-    <link rel="stylesheet" href="./login.css">
-    <link rel="stylesheet" href="./font/fontawesome/css/all.css">
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHF8G92CN5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-EHF8G92CN5');
-    </script>
-
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-        }); var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'G-EHF8G92CN5');</script>
-    <!-- End Google Tag Manager -->
-
-<script data-cfasync="false" src="//d1ev866ubw90c6.cloudfront.net/?buved=932629"></script>
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin Sekolahku</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+		*{
+			font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+		}
+	</style>
 </head>
-
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-EHF8G92CN5" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <div id="root">
-        
-    </div>
-    <script src="./bt4/jquery.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHF8G92CN5"></script>
-    
-    <script src="./require.js" charset="utf-8"></script>
-		<script src="./config.js" charset="utf-8"></script>
-		<script type="text/javascript">
-			require([
-				'sammy',
-				'page/dashboard',
-				'page/dashboardsiswa',
-				'page/guru/login',
-				'page/guru/daftar',
-				'page/siswa/daftarsiswa',
-				'page/ruangguru',
-				'page/guru/ruangkelas',
-				'page/guru/kelas',
-				'page/guru/soal',
-				'page/siswa/loginsiswa',
-				'page/siswa/pilihguru',
-				'page/siswa/kelasSiswa',
-				'page/siswa/kelasSiswaSoal',
-				'page/siswa/kelasSiswaSoalLatihan',
-				'page/guru/laporanHasilBelajar',
-				'page/guru/laporanNilaiSiswa',
-				'page/guru/laporanNilaiSiswaMapel',
-				'page/guru/laporanNilaiSiswaMapelSoal',
-				'action/click',
-				'action/firebaseAct'
-			], function(sammy, dashboard, dashboardsiswa, login, daftar, daftarsiswa, ruangguru, ruangkelas, kelas, soal, loginsiswa, pilihguru, kelasSiswa, kelasSiswaSoal, kelasSiswaSoalLatihan, laporanHasilBelajar, laporanNilaiSiswa
-				, laporanNilaiSiswaMapel, laporanNilaiSiswaMapelSoal){
-					var app = sammy(function() {
-						// master data release
-						this.get('#/', function() {
-							dashboard.view();
-						});
-						this.get('#/pop3', function() {
-							dashboard.pop();
-						});
-						this.get('#/guru/login', function() {
-							login.view();
-						});
-						this.get('#/siswa/login', function() {
-							loginsiswa.view();
-						});
-						this.get('#/guru/daftar', function() {
-							daftar.view();
-						});
-
-						this.get('#/siswa/daftar', function() {
-							daftarsiswa.view();
-						});
-						this.get('#/ruang-guru', function() {
-							ruangguru.view();
-						});
-						this.get('#/ruang-guru/ruang-kelas', function() {
-							ruangkelas.view();
-						});
-						this.get('#/ruang-guru/kelas/:kelas', function() {
-							let id = this.params['kelas'];
-                            kelas.view(id);
-						});
-						this.get('#/ruang-guru/soal-latihan/:kelas/:soal', function() {
-							let a = this.params['kelas'];
-							let b = this.params['soal'];
-                            soal.view(a, b);
-						});
-						this.get('#/siswa/pilih-guru/', function() {
-							pilihguru.view();
-						});
-						this.get('#/siswa-kelas/:guru', function() {
-							let a = this.params['guru'];
-							kelasSiswa.view(a);
-						});
-						this.get('#/siswa-kelas-soal/:kelas', function() {
-							let a = this.params['kelas'];
-							kelasSiswaSoal.view(a);
-						});
-						this.get('#/siswa-kelas-latihan-soal/:soal', function() {
-							let a = this.params['soal'];
-							kelasSiswaSoalLatihan.view(a);
-						});
-						this.get('#/ruangSiswa/', function() {
-							dashboardsiswa.view();
-						});
-						this.get('#/ruang-guru/laporan-siswa', function() {
-							laporanHasilBelajar.view();
-						});
-						this.get('#/hasil-belajar-soal/:data', function() {
-							let a = this.params['data'];
-							laporanNilaiSiswa.view(a);
-						});
-						this.get('#/hasil-belajar-soal-mapel/:data/:key', function() {
-							let a = this.params['data'];
-							let b = this.params['key'];
-							laporanNilaiSiswaMapel.view(a, b);
-						});
-						this.get('#/hasil-belajar-soal-mapel-data/:data', function() {
-							let a = this.params['data'];
-							laporanNilaiSiswaMapelSoal.view(a);
-						});
-					});
-					app.run("#/");
-			
-});
-		</script>
-    
-
-    
+	<script src="./domelement.js"></script>
+	<script type="module">
+		import * as mod from "./adminsekolah.js";
+		/*
+			head setting
+		*/
+		document.body.appendChild(div().id('admin-container')
+			/*
+				load panel
+			*/
+			.child(mod.sekolahPanel([
+				{
+					icon: 'fas fa-home'
+				}
+				,{
+					icon: 'fas fa-user'
+				}
+				,{
+					icon: 'fas fa-list-check'
+				}
+				,{
+					icon: 'fas fa-book'
+				}
+			]))
+			.child(mod.contentDashboard([
+				{
+					text: 'Daftar tugas',
+					description: ' 10 tugas dibuat'
+				},
+				{
+					text: 'Bank Soal',
+					description: ' 10 soal dibuat '
+				},
+				{
+					text: 'Kelas',
+					description: ' 5 Kelas Dibuat'
+				},
+				{
+					text: 'Perpustakaan Digital',
+					description: ' 100 post'
+				}
+			]))
+			.get())
+	</script>
 </body>
-
 </html>
