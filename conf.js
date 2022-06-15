@@ -9,3 +9,8 @@ export const panelProfile = function(a, b){
 			p().textCenter().color('#777').size('12px').pd(0).margin(0).mt('5px').text(b)
 		)
 }
+
+export const actionDate = function(a){
+	var date = this.innerText
+	alert(date)
+}

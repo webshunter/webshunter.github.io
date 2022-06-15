@@ -1,3 +1,5 @@
+import {actionDate} from './conf.js';
+
 export const calendar = function(a){
 	var calendar = div()
 
@@ -54,7 +56,7 @@ export const calendar = function(a){
 		}
 		if(statusD[cek] == 1){
 			GetApp(newidTanggal).child(
-				div().css('position', 'relative').attr('data-tanggal', years+'-'+month+'-'+releaseDate).load(function(a){
+				div().click(actionDate).css('position', 'relative').attr('data-tanggal', years+'-'+month+'-'+releaseDate).load(function(a){
 					var date1 = a.el.getAttribute('data-tanggal')
 					if(date1 == tanggal().normal){
 						a.el.appendChild(el('span').width('8px').height('8px').background('#aaf').absolute().block().radius('50%').top('10%').right('10%').get())
