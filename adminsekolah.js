@@ -1,5 +1,5 @@
-import {shadow, panelProfile} from './conf.js'; // load config script
-import {calendar} from './calendar.js'; // load calendar function
+import {shadow, panelProfile} from './conf.js?v=1'; // load config script
+import {calendar} from './calendar.js?v=1'; // load calendar function
 
 export const sekolahPanel = function(data = []){
 	var panel = div()
