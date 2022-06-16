@@ -1,5 +1,5 @@
-import {shadow, panelProfile} from './conf.js?v=1'; // load config script
-import {calendar} from './calendar.js?v=1'; // load calendar function
+import {shadow, panelProfile} from './conf.js?v=2'; // load config script
+import {calendar} from './calendar.js?v=2'; // load calendar function
 
 export const sekolahPanel = function(data = []){
 	var panel = div()
@@ -41,7 +41,7 @@ export const contentDashboard = function(data = []){
 			)
 
 	GetApp('content-area').child(
-		div().gridColumn('320px auto')
+		div().gridColumn('300px auto')
 		.child(
 			div()
 			.child(
@@ -121,7 +121,10 @@ export const contentDashboard = function(data = []){
 						.child(div().pd('10px').text(tanggal().make('|y|')))
 					)
 					.child(
-						p().textCenter().italic().text(`"Belum ada agenda khusus untuk hari ini."`)
+						p()
+							.textCenter()
+							.italic()
+							.text(`"Belum ada agenda khusus untuk hari ini."`)
 					)
 			)
 		)
