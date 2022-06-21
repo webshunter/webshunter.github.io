@@ -3,12 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin Sekolahku</title>
+	<title>Js Course</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.6/codemirror.min.js" integrity="sha512-n7rucz/qOiYAkYK1CVKuqygMAnohil8Rg6kKAv0IsF2xnHUhnVyD5K9GO25OUvc+WEVZVu+NIYLblIUpkBMNvQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
-		*{
-			font-family:'Roboto', sans-serif;
+		@font-face {
+		    font-family: 'Segoe-UI';
+		    src: url('./segoe-font/Segoe-UI.ttf');
+		}
+		p, span, div, option, li, ul, pre, select, input, textarea, form, code, h1, h2, h3, h4, h5, h6{
+			font-family: "Segoe-UI" !important;
+			color:  white;
+		}
+		p{
+			font-weight: 400;
+		}
+		/* width */
+		::-webkit-scrollbar {
+		  width: 5px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+		  background: #111;
+		  border-radius: 3px;
+		  cursor: pointer;
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+		  background: #000;
+		  border-radius: 3px;
+		  cursor: pointer;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+		  background: #555;
+		  cursor: pointer;
+		}
+		body{
+			background: #21262d;
 		}
 	</style>
 </head>
@@ -39,20 +74,20 @@
 			]))
 			.child(mod.contentDashboard([
 				{
-					text: 'Daftar tugas',
-					description: ' 10 tugas dibuat'
+					text: 'Prtofolio',
+					description: ' my portofolio'
 				},
 				{
-					text: 'Bank Soal',
-					description: ' 10 soal dibuat '
+					text: 'Javascript From Zero',
+					description: ' 10 case'
 				},
 				{
-					text: 'Kelas',
-					description: ' 5 Kelas Dibuat'
+					text: 'Case Finish',
+					description: ' 10 case'
 				},
 				{
-					text: 'Perpustakaan Digital',
-					description: ' 100 post'
+					text: 'Forum',
+					description: ' forum diskusi '
 				}
 			]))
 			.get())

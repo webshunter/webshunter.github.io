@@ -1141,7 +1141,7 @@ const CardFoto = function(fotoSize = 120, fotoUrl = 'https://indowebs.my.id/seko
           h3().css('font-weight','400').text(text).padding(0).margin(0)
         )
         .child(
-          p().size('14px ').color('#777').text(description).padding(0).margin(0)
+          p().size('14px ').color('#aaa').text(description).padding(0).margin(0)
         )
       )
   )
@@ -1152,7 +1152,7 @@ const CardFotoList = function(fotoSize = 120, fotoUrl = 'https://indowebs.my.id/
   .gridColumn(fotoSize+'px auto')
   .pd('14px')
   .width('calc(100% - (2 * 14px))')
-  .background('#fff')
+  .background('#30363d')
   .css('border-radius','8px')
   .mb('12px')
   .child(
@@ -1179,7 +1179,7 @@ const CardFotoList = function(fotoSize = 120, fotoUrl = 'https://indowebs.my.id/
           h3().size('16px').css('font-weight','400').text(text).padding(0).margin(0)
         )
         .child(
-          p().size('12px ').color('#777').text(description).padding(0).margin(0).mt('5px')
+          p().size('12px ').color('#aaa').text(description).padding(0).margin(0).mt('5px')
         )
       )
   )
