@@ -1,6 +1,6 @@
 import {shadow, panelProfile, b1, b3, frontDescription} from './conf.js?v=2'; // load config script
 import {calendar} from './calendar.js?v=2'; // load calendar function
-import {card, darkCard} from './box.js'; // load card
+import {card, darkCard, darkCardPostCode} from './box.js'; // load card
 import {newCanvas, canvasDiv} from './canvas/canvas.js' // load canvas
 
 export const sekolahPanel = function(data = []){
@@ -110,6 +110,9 @@ export const contentDashboard = function(data = []){
 		})
 		.child(
 			frontDescription()
+		)
+		.child(
+			darkCardPostCode()
 		)
 		.load(function(){
 
