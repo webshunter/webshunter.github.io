@@ -1,4 +1,4 @@
-import {shadow, panelProfile, b1, b3} from './conf.js?v=2'; // load config script
+import {shadow, panelProfile, b1, b3, frontDescription} from './conf.js?v=2'; // load config script
 import {calendar} from './calendar.js?v=2'; // load calendar function
 import {card, darkCard} from './box.js'; // load card
 import {newCanvas, canvasDiv} from './canvas/canvas.js' // load canvas
@@ -109,14 +109,14 @@ export const contentDashboard = function(data = []){
 			}
 		})
 		.child(
-			darkCard()
-			.child(
-				h1().text('Dark JS')
-			)
-			.child(
-				p().text('Selamat datang di platform javascript course. kenali javascript lebih dalam dan pecahkan setiap kasus untuk mengisi portofolio anda. dan buat aplikasi pertama anda dengan javascript.')
-			)
+			frontDescription()
 		)
+		.load(function(){
+
+			// call query action to load data of post
+			console.log('call data')
+		
+		})
 	)
 
 

@@ -1,3 +1,5 @@
+import {darkCard} from './box.js';
+
 export const shadow = '0 0 10px #ddf';
 
 export const panelProfile = function(a, b){
@@ -22,3 +24,13 @@ export const b1 = '#010409'
 export const b2 = '#21262d'
 
 export const b3 = '#30363d'
+
+export const frontDescription = function(){
+	return darkCard()
+			.child(
+				h1().text('Dark JS')
+			)
+			.child(
+				p().text('Selamat datang di platform javascript course. kenali javascript lebih dalam dan pecahkan setiap kasus untuk mengisi portofolio anda. dan buat aplikasi pertama anda dengan javascript.')
+			)
+}
