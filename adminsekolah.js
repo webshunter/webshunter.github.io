@@ -1,6 +1,6 @@
 import {shadow, panelProfile, b1, b3, frontDescription} from './conf.js?v=2'; // load config script
 import {calendar} from './calendar.js?v=2'; // load calendar function
-import {card, darkCard, darkCardPostCode} from './box.js'; // load card
+import {card, darkCard, darkCardPostCode, darkCardIframe} from './box.js'; // load card
 import {newCanvas, canvasDiv} from './canvas/canvas.js' // load canvas
 
 export const sekolahPanel = function(data = []){
@@ -79,8 +79,17 @@ export const contentDashboard = function(data = []){
 		)
 	)
 
+	GetApp('dashboard-profile').child(
+		div().id('panel-menu-bar').load(function(a){
+			a.el.style.overflowX = 'hidden'
+			a.el.style.overflowY = 'auto'
+			a.el.style.padding = '10px'
+			a.el.style.maxHeight = 'calc(100vh - ('+a.el.offsetTop+'px + (12px * 2) + (10px * 2) ) )'
+		})
+	)
+
 	for (var showContent of data) {
-		GetApp('dashboard-profile').child(
+		GetApp('panel-menu-bar').child(
 			CardFotoList(50, 'https://indowebs.my.id/sekolahid/profil.jpg', showContent.text, showContent.description, function(){
 				alert('risma')
 			})
@@ -112,13 +121,16 @@ export const contentDashboard = function(data = []){
 			frontDescription()
 		)
 		.child(
+			darkCardIframe()
+		).child(
+			darkCardIframe()
+		)
+		.child(
 			darkCardPostCode()
 		)
 		.load(function(){
-
 			// call query action to load data of post
 			console.log('call data')
-		
 		})
 	)
 

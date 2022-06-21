@@ -1154,7 +1154,7 @@ const CardFotoList = function(fotoSize = 120, fotoUrl = 'https://indowebs.my.id/
   .width('calc(100% - (2 * 14px))')
   .background('#30363d')
   .css('border-radius','8px')
-  .mb('12px')
+  .mb('14px')
   .child(
     div().relative()
         .child(

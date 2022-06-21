@@ -9,6 +9,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/theme-monokai.min.js" integrity="sha512-wZYGbdk0giM73l8BLDNfSEziApAmH8DvXey6zNLG3QUgDeDsMAPm3FIdjhLwrGOWO0vdVHkVxeUzOBR0Hc/xBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/snippets/jade.min.js" integrity="sha512-38WJ2/BaFzLDIp7Ku0CyEeJmuPL7bBOCVr+osgCJAM5qQCXvFvKzOBsA1iho+ibA/2K87nwqrMxN1ZTAMctzrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/snippets/javascript.min.js" integrity="sha512-V7l3AcLeSIrWrNl2C90rpphSbtqOeOqgBQjG7cz0h3sHi0k5em/woY8Ka7R+LMokENc/6kng2HN/EHCXJHS4tA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/mode-css.min.js" integrity="sha512-8icusxCu6Y01zcVKm5BFeF1halztoO4gZa/uwM6zWwFk+aEhz+kJmBsX+0x2a/Hich1NX+v73hz+rwaY2efJJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/mode-html.min.js" integrity="sha512-uMmxLS29LYgQIt2f6xjpFHZFA9GFQKO65aO+d/CNEra0lXPDnuMOxDqLJaBAYgmwd2KdNVXWMT5Y8B6Z5/DBng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<style>
 		@font-face {
 		    font-family: 'Segoe-UI';
@@ -23,11 +25,13 @@
 		}
 		/* width */
 		::-webkit-scrollbar {
+			margin-right: -5px;
 		  width: 5px;
 		}
 
 		/* Track */
 		::-webkit-scrollbar-track {
+			padding-left: 10px;
 		  background: #111;
 		  border-radius: 3px;
 		  cursor: pointer;
@@ -35,7 +39,7 @@
 
 		/* Handle */
 		::-webkit-scrollbar-thumb {
-		  background: #000;
+		  background: #333;
 		  border-radius: 3px;
 		  cursor: pointer;
 		}
@@ -77,20 +81,28 @@
 			]))
 			.child(mod.contentDashboard([
 				{
-					text: 'Prtofolio',
-					description: ' my portofolio'
+					text: 'Portofolio',
+					description: ' my portofolio',
+					page: 'portofolio'
 				},
 				{
+					text: 'HTML From Zero',
+					description: ' 10 case',
+					page: 'htmlfromzero'
+				},{
 					text: 'Javascript From Zero',
-					description: ' 10 case'
+					description: ' 10 case',
+					page: 'jsfromzero'
 				},
 				{
-					text: 'Case Finish',
-					description: ' 10 case'
+					text: 'Javascript Case',
+					description: ' 10 case',
+					page: 'jscase'
 				},
 				{
 					text: 'Forum',
-					description: ' forum diskusi '
+					description: ' forum diskusi ',
+					page: 'forums'
 				}
 			]))
 			.get())
