@@ -11,10 +11,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/snippets/javascript.min.js" integrity="sha512-V7l3AcLeSIrWrNl2C90rpphSbtqOeOqgBQjG7cz0h3sHi0k5em/woY8Ka7R+LMokENc/6kng2HN/EHCXJHS4tA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/mode-css.min.js" integrity="sha512-8icusxCu6Y01zcVKm5BFeF1halztoO4gZa/uwM6zWwFk+aEhz+kJmBsX+0x2a/Hich1NX+v73hz+rwaY2efJJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/mode-html.min.js" integrity="sha512-uMmxLS29LYgQIt2f6xjpFHZFA9GFQKO65aO+d/CNEra0lXPDnuMOxDqLJaBAYgmwd2KdNVXWMT5Y8B6Z5/DBng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="./mirror/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="./mirror/codemirror/theme/ambiance.css">
+	<script type="text/javascript" src="./mirror/codemirror/lib/codemirror.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/mode/javascript/javascript.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/mode/xml/xml.js"></script>
 	<style>
 		@font-face {
 		    font-family: 'Segoe-UI';
 		    src: url('./segoe-font/Segoe-UI.ttf');
+		}
+		@font-face {
+		    font-family: 'Fira Code';
+		    src: url('./Fira_Code/FiraCode-VariableFont_wght.ttf');
 		}
 		p, span, div, option, li, ul, pre, select, input, textarea, form, code, h1, h2, h3, h4, h5, h6{
 			font-family: "Segoe-UI" !important;
@@ -55,12 +65,27 @@
 	</style>
 </head>
 <body>
-	<script src="./domelement.js"></script>
+	<script src="./domelement.js?v=9"></script>
 	<script type="module">
-		import * as mod from "./adminsekolah.js?v=2";
+		import * as mod from "./adminsekolah.js?v=9";
+		import {b3} from "./conf.js"
 		/*
 			head setting
 		*/
+		document.body.appendChild(
+			div()
+			.id('page-container-s')
+			.css('position', 'fixed')
+			.css('width', 'calc(100vw - 50px)')
+			.css('height', '100vh')
+			.css('top', '0')
+			.css('right', '0')
+			.css('z-index', '1000')
+			.css('background', b3)
+			.css('display', 'none')
+			.get()
+		)
+
 		document.body.appendChild(div().id('admin-container')
 			/*
 				load panel
@@ -78,6 +103,9 @@
 				,{
 					icon: 'fas fa-book'
 				}
+				,{
+					icon: 'fas fa-camera'
+				}
 			]))
 			.child(mod.contentDashboard([
 				{
@@ -89,7 +117,13 @@
 					text: 'HTML From Zero',
 					description: ' 10 case',
 					page: 'htmlfromzero'
-				},{
+				},
+				{
+					text: 'CSS From Zero',
+					description: ' 10 case',
+					page: 'cssfromzero'
+				},
+				{
 					text: 'Javascript From Zero',
 					description: ' 10 case',
 					page: 'jsfromzero'

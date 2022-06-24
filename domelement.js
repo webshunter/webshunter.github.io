@@ -1138,10 +1138,10 @@ const CardFoto = function(fotoSize = 120, fotoUrl = 'https://indowebs.my.id/seko
       .child(
         div()
         .child(
-          h3().css('font-weight','400').text(text).padding(0).margin(0)
+          h3().css('font-weight','400').html(text).padding(0).margin(0)
         )
         .child(
-          p().size('14px ').color('#aaa').text(description).padding(0).margin(0)
+          p().size('14px ').color('#aaa').html(description).padding(0).margin(0)
         )
       )
   )

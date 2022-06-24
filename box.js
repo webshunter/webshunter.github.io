@@ -1,4 +1,4 @@
-import {b3} from './conf.js';
+import {b3} from './conf.js?v=9';
 
 export const card = function(){
 	return div().padding('16px').radius('8px').margin('16px').background(b3)
@@ -20,7 +20,7 @@ export const darkCardIframe = function(
 	.css('min-height', '250px')
 	.padding('16px').radius('8px').margin('16px').background(b3)
 	.child(
-		btn().attr('data-code-p', idDiv).attr('data-'+idDiv, true).weight('bold').css('background', b3).color('#fff').css('outline', 'none').border('none').pd('8px 10px').text('view')
+		btn().attr('data-code-p', idDiv).cursor('pointer').attr('data-'+idDiv, true).weight('bold').css('background', b3).color('#fff').css('outline', 'none').border('none').pd('8px 10px').text('view')
 		.click(function(event){
 			var sy = Array.from(document.querySelectorAll('[data-'+event.target.getAttribute('data-code-p')+']'));
 			for(const so of sy){
@@ -83,9 +83,14 @@ export const darkCardIframe = function(
 			var editor = ace.edit(e.el.id);
 			editor.setTheme("ace/theme/monokai");
 			editor.getSession().setMode("ace/mode/html");
-			editor.setReadOnly(true)
-			editor.setValue(html)
-			editor.clearSelection()
+			editor.setReadOnly(true);
+			editor.setValue(html);
+			editor.resize(true);
+			editor.clearSelection();
+			editor.setOptions({
+			  fontFamily: "Fira Code",
+			  fontSize: "12pt"
+			});
 		})
 	)
 	.child(
@@ -96,9 +101,14 @@ export const darkCardIframe = function(
 			var editor = ace.edit(e.el.id);
 			editor.setTheme("ace/theme/monokai");
 			editor.getSession().setMode("ace/mode/javascript");
-			editor.setReadOnly(true)
-			editor.setValue(script)
-			editor.clearSelection()
+			editor.setReadOnly(true);
+			editor.setValue(script);
+			editor.clearSelection();
+			editor.resize(true);
+			editor.setOptions({
+			  fontFamily: "Fira Code",
+			  fontSize: "12pt"
+			});
 		})
 	)
 	.child(
@@ -109,9 +119,14 @@ export const darkCardIframe = function(
 			var editor = ace.edit(e.el.id);
 			editor.setTheme("ace/theme/monokai");
 			editor.getSession().setMode("ace/mode/css");
-			editor.setReadOnly(true)
-			editor.setValue(style)
-			editor.clearSelection()
+			editor.setReadOnly(true);
+			editor.setValue(style);
+			editor.clearSelection();
+			editor.resize(true);
+			editor.setOptions({
+			  fontFamily: "Fira Code",
+			  fontSize: "12pt"
+			});
 		})
 	)
 	.child(
@@ -158,7 +173,7 @@ export const darkCardIframe = function(
 export const darkCardPostCode = function(
 	title = 'Mengenal Javascript'
 	, description = 'JavaScript adalah bahasa pemrograman tingkat tinggi dan dinamis. JavaScript populer di internet dan dapat bekerja di sebagian besar penjelajah web populer seperti Google Chrome, Internet Explorer, Mozilla Firefox, Netscape dan Opera. Kode JavaScript dapat disisipkan dalam halaman web menggunakan tag SCRIPT. Berikut contoh kode javasript', 
-	code = `var iam = 'javacript code'; \nconsole.log(iam); // result 'javascript code' `) {
+	code = `var iam = 'javacript code'; \nconsole.log(iam); // result 'javascript code'`, type = 'javascript') {
 	return div()
 	.css('min-height', '250px')
 	.gridColumn('50% auto')
@@ -170,7 +185,6 @@ export const darkCardPostCode = function(
 		}
 	})
 	.resize(function(a){
-		console.log(a.el.clientWidth);
 		if(a.el.clientWidth < 650){
 			a.el.style.gridTemplateColumns = 'auto';
 		}else{
@@ -189,14 +203,21 @@ export const darkCardPostCode = function(
 		)
 	)
 	.child(
-		el('div').html(code).load(function(e){
+		el('div').load(function(e){
 			//load ace editor
 			e.el.id = 'ace-'+Date.now();
 			e.el.style.height = e.el.parentNode.clientHeight+'px'
-			var editor = ace.edit(e.el.id);
-			editor.setTheme("ace/theme/monokai");
-			editor.getSession().setMode("ace/mode/javascript");
-			editor.setReadOnly(true)
+				var editor = ace.edit(e.el.id);
+				editor.setTheme("ace/theme/monokai");
+				editor.getSession().setMode("ace/mode/"+type);
+				editor.setReadOnly(true);
+				editor.setValue(code);
+				editor.clearSelection();
+				editor.resize(true);
+				editor.setOptions({
+				  fontFamily: "Fira Code",
+				  fontSize: "12pt"
+				},10);
 		})
 	)	
 }

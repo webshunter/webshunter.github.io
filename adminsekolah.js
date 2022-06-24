@@ -1,7 +1,11 @@
-import {shadow, panelProfile, b1, b3, frontDescription} from './conf.js?v=2'; // load config script
-import {calendar} from './calendar.js?v=2'; // load calendar function
-import {card, darkCard, darkCardPostCode, darkCardIframe} from './box.js'; // load card
-import {newCanvas, canvasDiv} from './canvas/canvas.js' // load canvas
+import {shadow, panelProfile, b1, b3, frontDescription, userinformation, looping, OpenScreen} from './conf.js?v=9'; // load config script
+import {calendar} from './calendar.js?v=9'; // load calendar function
+import {card, darkCard, darkCardPostCode, darkCardIframe} from './box.js?v=9'; // load card
+import {newCanvas, canvasDiv} from './canvas/canvas.js?v=9' // load canvas
+import {loginPage} from './pages/login.js';
+import {registerPage} from './pages/register.js';
+import {post} from './db/db.js';
+import {postinganCode} from './pages/post.js';
 
 export const sekolahPanel = function(data = []){
 	var panel = div()
@@ -53,11 +57,13 @@ export const contentDashboard = function(data = []){
 		.child(
 			div()
 			.id('dashboard-content')
+			.css('display','grid')
+			.css('grid-template-rows','50px auto')
 		)
 	)
 
 	GetApp('dashboard-profile').child(
-		CardFoto(90, 'https://indowebs.my.id/sekolahid/profil.jpg', 'Risma Dana', 'Guru', function(){
+		CardFoto(90, 'https://indowebs.my.id/sekolahid/profil.jpg', '<span data-name-user>'+userinformation().name+'</span>', userinformation().level, function(){
 			alert('risma')
 		})
 	)
@@ -97,10 +103,41 @@ export const contentDashboard = function(data = []){
 	}
 
 	GetApp('dashboard-content')
-	.css('overflow', 'auto')
-	.css('height', 'calc(100vh - (18px * 2))')
 	.child(
-		div().gridColumn('auto')
+		div()
+		.margin('0 16px')
+		.child(
+			div()
+			.css('display', 'inline-flex')
+			.css('cursor', 'pointer')
+			.css('align-items', 'center')
+			.padding('16px')
+			.child(el('i').class('fa-solid fa-home')).child(el('span').css('margin-left', '10px').text('Beranda'))
+		)
+		.child(
+			div()
+			.css('display', 'inline-flex')
+			.css('cursor', 'pointer')
+			.css('align-items', 'center')
+			.padding('16px')
+			.child(el('i').class('fa-solid fa-camera')).child(el('span').css('margin-left', '10px').text('Post'))
+		)
+		.child(
+			div()
+			.css('display', 'inline-flex')
+			.css('cursor', 'pointer')
+			.css('align-items', 'center')
+			.padding('16px')
+			.child(el('i').class('fa-solid fa-users')).child(el('span').css('margin-left', '10px').text('Forums'))
+		)
+	);
+
+	GetApp('dashboard-content')
+	.child(
+		div()
+		.id('content-postingan')
+		.css('overflow', 'auto')
+		.css('height', 'calc(100vh - (50px + (18px * 2) ) )')
 		.load((a)=>{
 			var width = a.el.clientWidth;
 			if(width < 650){
@@ -117,20 +154,76 @@ export const contentDashboard = function(data = []){
 				a.el.style.gridTemplateColumns = 'auto'
 			}
 		})
-		.child(
-			frontDescription()
-		)
-		.child(
-			darkCardIframe()
-		).child(
-			darkCardIframe()
-		)
-		.child(
-			darkCardPostCode()
-		)
 		.load(function(){
+			var contentPage = GetApp('content-postingan');
 			// call query action to load data of post
-			console.log('call data')
+			if(localStorage.getItem('token') == undefined){
+				contentPage.child(
+					frontDescription(
+						'Halo <span data-name-user>'+userinformation().name+'</span>',
+						`Selamat datang di platform javascript course. kenali javascript lebih dalam dan pecahkan setiap kasus untuk mengisi portofolio anda. dan buat aplikasi pertama anda dengan javascript.`
+						,function(){
+							OpenScreen('full', function(screen){
+								screen.child(
+									loginPage()
+								)
+							})
+						}
+					)
+				)
+			}else{
+				contentPage.child(
+					frontDescription(
+						'Halo <span data-name-user>'+userinformation().name+'<span>',
+						`Selamat datang di platform javascript course. kenali javascript lebih dalam dan pecahkan setiap kasus untuk mengisi portofolio anda. dan buat aplikasi pertama anda dengan javascript.`
+						,function(){
+							alert('selesaikan tugas pertam anda')
+						}
+					)
+				)
+				post('https://indowebs.my.id/audit-dev/api.php', {
+					type: 'read',
+					table: 'user',
+					select: 'username',
+					token: localStorage.getItem('token'),
+					condition: {
+						token: localStorage.getItem('token')
+					}
+				},function(res){
+					if(Array.isArray(res)){
+						if(res.length > 0){
+							res = res[0];
+							localStorage.setItem('user-online', res.username);
+							Array.from(document.querySelectorAll('[data-name-user]')).forEach(function(a){
+								a.innerText = res.username;
+							})
+						}
+					}
+				}, function(){
+
+				})
+			}
+
+			contentPage.child(
+				darkCardPostCode()
+			)
+
+			looping(function(){
+				contentPage.child(
+					darkCardPostCode()
+				)
+			},20)
+
+			OpenScreen('full', function(screen){
+				screen.child(
+					postinganCode()
+				)
+			})
+
+
+			setTimeout(function(){
+				console.log('scroll')
+			},5000)
 		})
 	)
 
