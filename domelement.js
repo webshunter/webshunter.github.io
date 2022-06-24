@@ -961,6 +961,10 @@ const childes = function(el = null , err = []){
 
 // app display template
 
+function alert(a){
+    console.log(a);
+}
+
 
 const GetApp = function(a){
   var objectApp = AppObj[a];

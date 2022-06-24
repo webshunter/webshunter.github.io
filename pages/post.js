@@ -58,7 +58,7 @@ export const postinganCode = function(
 					globalThis[event.target.idplay].parent.editorcode
 					.getDoc().setValue(globalThis[event.target.code]['style'])
 					globalThis[event.target.idplay].parent.editorcode
-					.setOption('mode', 'text/html')
+					.setOption('mode', 'css')
 				})
 			)
 			.child(
@@ -159,53 +159,97 @@ export const postinganCode = function(
 		).child(
 			div()
 			.child(
-				el('iframe')
-				.id('views-'+idDiv)
-				.width('calc(100% - 4px)')
-				.height('calc(100% - 36px)')
-				.load(function(a){
-					a.el.parentNode.style.height = (a.el.parentNode.clientHeight + 36)+'px';
-					var win = a.el.contentWindow
-					win.el = el;
-					var doc = win.document
-					a.el.document = win;
-					doc.head.appendChild(
-						el('style').html(`
-							@font-face {
-							    font-family: 'Segoe-UI';
-							    src: url('./segoe-font/Segoe-UI.ttf');
-							}
-							body{
-								background: #fff;
-							}
-							*{
-								font-family: "Segoe-UI" !important;
-								margin: 0;
-								padding: 0;
-							}
-						`).get()
-					)
-					doc.head.appendChild(
-						el('style').html(style).get()
-					)	
-					doc.body.appendChild(div()
-						.child(
-							div()
-							.html(html)
-						)
-						.child(
-							el('script').html(`
-								try {
-									${script}
-								} catch(err){
-									var log = document.getElementById('console');
-									if(log != undefined){
-										log.innerHTML = err;
-									}
+				div()
+				.child(
+					el('iframe')
+					.id('views-'+idDiv)
+					.width('calc(100% - 4px)')
+					.height('50vh')
+					.load(function(a){
+						a.el.parentNode.style.height = (a.el.parentNode.clientHeight + 36)+'px';
+						var win = a.el.contentWindow
+						win.el = el;
+						var doc = win.document
+						a.el.document = win;
+						doc.head.appendChild(
+							el('style').html(`
+								@font-face {
+								    font-family: 'Segoe-UI';
+								    src: url('./segoe-font/Segoe-UI.ttf');
 								}
-								`)
-						).get())
-				})
+								body{
+									background: #fff;
+								}
+								*{
+									font-family: "Segoe-UI" !important;
+									margin: 0;
+									padding: 0;
+								}
+							`).get()
+						)
+						doc.head.appendChild(
+							el('style').html(style).get()
+						)	
+						doc.body.appendChild(div()
+							.child(
+								div()
+								.html(html)
+							)
+							.child(
+								el('noscript').id('script-data').html(script)
+							)
+							.child(
+								el('script').html(`
+									var result;
+									try {
+									    result = eval(document.getElementById('script-data').innerHTML);
+									} catch (ex) {
+									    if (ex !== null && typeof ex !== "undefined") {
+									        if (ex.message) ex = ex.message;
+									    } else {
+									        ex = "An unknown error occurred.";
+									    }
+									    result = ex;
+										console.log(ex)
+									}
+									`)
+							).get())
+					})
+				)
+				.child(
+					div()
+						.child(
+							el('div')
+							.margin('10px')
+							.border('1px dotted #ddd')
+							.css('oveflow-x', 'hidden')
+							.css('oveflow-y', 'scroll')
+							.css('height', 'calc(50vh - 30px)')
+							.class('editor').id('notes'+idDiv).load(function(editor){
+								var id = editor.el.id;
+								
+
+								InlineEditor
+								.create( document.querySelector( '.editor' ), {									
+									licenseKey: '',
+								} )
+								.then( editor => {
+									if(window.editorContain == undefined){
+										window.editorContain = {}
+									} 
+									window.editorContain[idDiv] = editor;
+									window.editorContain[idDiv].setData('type here to describe');
+								} )
+								.catch( error => {
+									console.error( 'Oops, something went wrong!' );
+									console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+									console.warn( 'Build id: pzv07nhnfya6-oru18pcau0b4' );
+									console.error( error );
+								} );
+
+							})
+						)
+				)
 			)
 	)
 }

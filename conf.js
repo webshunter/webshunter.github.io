@@ -7,7 +7,7 @@ export const looping = function(func,  num = 10, st = 0){
 		func(st)
 		setTimeout(function(){
 			looping(func, num, st + 1);
-		}, 200)
+		})
 	}
 }
 

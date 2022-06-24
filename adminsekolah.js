@@ -6,6 +6,7 @@ import {loginPage} from './pages/login.js';
 import {registerPage} from './pages/register.js';
 import {post} from './db/db.js';
 import {postinganCode} from './pages/post.js';
+import {postMenus} from './pages/postMenu.js';
 
 export const sekolahPanel = function(data = []){
 	var panel = div()
@@ -214,9 +215,18 @@ export const contentDashboard = function(data = []){
 				)
 			},20)
 
-			OpenScreen('full', function(screen){
+
+			// postingan menu
+			// OpenScreen('full', function(screen){
+			// 	screen.child(
+			// 		postinganCode()
+			// 	)
+			// })
+
+
+			OpenScreen('page', function(screen){
 				screen.child(
-					postinganCode()
+					postMenus()
 				)
 			})
 

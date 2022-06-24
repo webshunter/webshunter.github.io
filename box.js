@@ -10,6 +10,38 @@ export const darkCard = function(){
 	.padding('16px').radius('8px').margin('16px').background(b3)
 }
 
+export const boxMenusDark = function(title = "Title Menus", description = 'deskripsi', func = null){
+	return div()
+	.css('text-align', 'center')
+	.background("#21262d")
+	.margin("10px")
+	.padding("10px")
+	.radius("10px")
+	.cursor('pointer')
+	.css('box-shadow', '0 0 10px #aaa')
+	.child(
+		el('img')
+		.css('background', '#fff')
+		.radius('50%')
+		.css('display', 'inline-block')
+		.src('./assets/code.png').width('50px')
+	)
+	.child(
+		div()
+		.css('font-size','24px')
+		.text(title)
+	)
+	.child(
+		div()
+		.text(description)
+	)
+	.click(function(){
+		if(func != null){
+			func(this);
+		}
+	})
+}
+
 export const darkCardIframe = function(
 		style= ` body {\n	background: white;\n} `,
 		html = `<h1>Views</h1>\n<p>deskripsi</p>`, 
@@ -203,21 +235,14 @@ export const darkCardPostCode = function(
 		)
 	)
 	.child(
-		el('div').load(function(e){
-			//load ace editor
-			e.el.id = 'ace-'+Date.now();
-			e.el.style.height = e.el.parentNode.clientHeight+'px'
-				var editor = ace.edit(e.el.id);
-				editor.setTheme("ace/theme/monokai");
-				editor.getSession().setMode("ace/mode/"+type);
-				editor.setReadOnly(true);
-				editor.setValue(code);
-				editor.clearSelection();
-				editor.resize(true);
-				editor.setOptions({
-				  fontFamily: "Fira Code",
-				  fontSize: "12pt"
-				},10);
+		el('textarea').load(function(e){
+			var editor = CodeMirror.fromTextArea(e.el, {
+			    lineNumbers: true,
+			    mode: 'javascript',
+			    readOnly: true
+		  	});
+		  	editor.setOption('theme', 'ambiance');
+		  	editor.getDoc().setValue(code);
 		})
 	)	
 }
