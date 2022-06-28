@@ -1,4 +1,4 @@
-import {b3} from './conf.js?v=9';
+import {b3} from './conf.js?v=12';
 
 export const card = function(){
 	return div().padding('16px').radius('8px').margin('16px').background(b3)
@@ -10,7 +10,7 @@ export const darkCard = function(){
 	.padding('16px').radius('8px').margin('16px').background(b3)
 }
 
-export const boxMenusDark = function(title = "Title Menus", description = 'deskripsi', func = null){
+export const boxMenusDark = function(title = "Title Menus", description = 'deskripsi', data = {}, func = null){
 	return div()
 	.css('text-align', 'center')
 	.background("#21262d")
@@ -35,6 +35,7 @@ export const boxMenusDark = function(title = "Title Menus", description = 'deskr
 		div()
 		.text(description)
 	)
+	.addModule('dataCode', data)
 	.click(function(){
 		if(func != null){
 			func(this);
@@ -44,7 +45,7 @@ export const boxMenusDark = function(title = "Title Menus", description = 'deskr
 
 export const darkCardIframe = function(
 		style= ` body {\n	background: white;\n} `,
-		html = `<h1>Views</h1>\n<p>deskripsi</p>`, 
+		html = `<h1>Views</h1>\n<p>deskripsi</p>`,
 		script = 'console.log("load")'
 	){
 	var idDiv = Date.now();
@@ -189,7 +190,7 @@ export const darkCardIframe = function(
 			)
 			doc.head.appendChild(
 				el('style').html(style).get()
-			)	
+			)
 			doc.body.appendChild(div()
 				.child(
 					div()
@@ -204,7 +205,7 @@ export const darkCardIframe = function(
 
 export const darkCardPostCode = function(
 	title = 'Mengenal Javascript'
-	, description = 'JavaScript adalah bahasa pemrograman tingkat tinggi dan dinamis. JavaScript populer di internet dan dapat bekerja di sebagian besar penjelajah web populer seperti Google Chrome, Internet Explorer, Mozilla Firefox, Netscape dan Opera. Kode JavaScript dapat disisipkan dalam halaman web menggunakan tag SCRIPT. Berikut contoh kode javasript', 
+	, description = 'JavaScript adalah bahasa pemrograman tingkat tinggi dan dinamis. JavaScript populer di internet dan dapat bekerja di sebagian besar penjelajah web populer seperti Google Chrome, Internet Explorer, Mozilla Firefox, Netscape dan Opera. Kode JavaScript dapat disisipkan dalam halaman web menggunakan tag SCRIPT. Berikut contoh kode javasript',
 	code = `var iam = 'javacript code'; \nconsole.log(iam); // result 'javascript code'`, type = 'javascript') {
 	return div()
 	.css('min-height', '250px')
@@ -244,5 +245,5 @@ export const darkCardPostCode = function(
 		  	editor.setOption('theme', 'ambiance');
 		  	editor.getDoc().setValue(code);
 		})
-	)	
+	)
 }

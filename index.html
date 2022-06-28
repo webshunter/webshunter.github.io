@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Js Course</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="./fontawesome/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/ace.js" integrity="sha512-mCwKQ3CvPxkAIwyhkfKGNMEH7mE7VAyoBq3pJIuer8G9BXEDAqnfuMHlt26sdPApAgKAXCPNkLAmMXlEVHezqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/theme-monokai.min.js" integrity="sha512-wZYGbdk0giM73l8BLDNfSEziApAmH8DvXey6zNLG3QUgDeDsMAPm3FIdjhLwrGOWO0vdVHkVxeUzOBR0Hc/xBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/snippets/jade.min.js" integrity="sha512-38WJ2/BaFzLDIp7Ku0CyEeJmuPL7bBOCVr+osgCJAM5qQCXvFvKzOBsA1iho+ibA/2K87nwqrMxN1ZTAMctzrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -12,25 +12,51 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/mode-css.min.js" integrity="sha512-8icusxCu6Y01zcVKm5BFeF1halztoO4gZa/uwM6zWwFk+aEhz+kJmBsX+0x2a/Hich1NX+v73hz+rwaY2efJJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.6.0/mode-html.min.js" integrity="sha512-uMmxLS29LYgQIt2f6xjpFHZFA9GFQKO65aO+d/CNEra0lXPDnuMOxDqLJaBAYgmwd2KdNVXWMT5Y8B6Z5/DBng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link rel="stylesheet" href="./mirror/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="./mirror/codemirror/addon/hint/show-hint.css">
+	<link rel="stylesheet" href="./mirror/codemirror/addon/fold/foldgutter.css">
+	<link rel="stylesheet" href="./mirror/codemirror/addon/dialog/dialog.css">
+	<link rel="stylesheet" href="./mirror/codemirror/theme/monokai.css">
 	<link rel="stylesheet" href="./mirror/codemirror/theme/ambiance.css">
+	<link rel="stylesheet" href="./mirror/codemirror/addon/display/fullscreen.css">
 	<script type="text/javascript" src="./plugins/jq.js"></script>
 	<script type="text/javascript" src="./mirror/codemirror/lib/codemirror.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/hint/show-hint.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/hint/css-hint.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/hint/html-hint.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/hint/javascript-hint.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/hint/anyword-hint.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/hint/xml-hint.js"></script>
 	<script type="text/javascript" src="./mirror/codemirror/mode/javascript/javascript.js"></script>
 	<script type="text/javascript" src="./mirror/codemirror/mode/htmlmixed/htmlmixed.js"></script>
 	<script type="text/javascript" src="./mirror/codemirror/mode/xml/xml.js"></script>
 	<script type="text/javascript" src="./mirror/codemirror/mode/css/css.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/search/searchcursor.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/search/search.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/dialog/dialog.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/edit/matchbrackets.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/edit/closebrackets.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/comment/comment.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/wrap/hardwrap.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/fold/foldcode.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/fold/brace-fold.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/scroll/annotatescrollbar.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/display/fullscreen.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/display/panel.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/addon/display/autorefresh.js"></script>
 	<script type="text/javascript" src="./editor/build/ckeditor.js"></script>
+	<script type="text/javascript" src="./mirror/codemirror/keymap/sublime.js"></script>
+	<link rel="stylesheet" href="./fira_code.css">
 	<style>
 		@font-face {
 		    font-family: 'Segoe-UI';
 		    src: url('./segoe-font/Segoe-UI.ttf');
 		}
-		@font-face {
-		    font-family: 'Fira Code';
-		    src: url('./Fira_Code/FiraCode-VariableFont_wght.ttf');
+		.CodeMirror {
+			font-family: 'Fira Code';
+			font-size: 16px;
 		}
 		p, span, div, option, li, ul, pre, select, input, textarea, form, code, h1, h2, h3, h4, h5, h6{
-			font-family: "Segoe-UI" !important;
+			font-family: "Segoe-UI";
 			color:  white;
 		}
 		p{
@@ -64,14 +90,41 @@
 		}
 		body{
 			background: #21262d;
+			overflow-x: hidden;
 		}
+
+		.lds-dual-ring {
+		  display: inline-block;
+		  width: 34px;
+		  height: 34px;
+		}
+		.lds-dual-ring:after {
+		  content: " ";
+		  display: block;
+		  width: 18px;
+		  height: 18px;
+		  margin: 8px;
+		  border-radius: 50%;
+		  border: 2px solid #fff;
+		  border-color: #fff transparent #fff transparent;
+		  animation: lds-dual-ring 1.2s linear infinite;
+		}
+		@keyframes lds-dual-ring {
+		  0% {
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    transform: rotate(360deg);
+		  }
+		}
+
 	</style>
 </head>
 <body>
-	<script src="./domelement.js?v=9"></script>
+	<script src="./domelement.js?v=12"></script>
 	<script type="module">
-		import * as mod from "./adminsekolah.js?v=9";
-		import {b3} from "./conf.js"
+		import * as mod from "./adminsekolah.js?v=12";
+		import {b3} from "./conf.js?v=12"
 		/*
 			head setting
 		*/
@@ -101,13 +154,7 @@
 					icon: 'fas fa-user'
 				}
 				,{
-					icon: 'fas fa-list-check'
-				}
-				,{
-					icon: 'fas fa-book'
-				}
-				,{
-					icon: 'fas fa-camera'
+					icon: 'fa-solid fa-cog'
 				}
 			]))
 			.child(mod.contentDashboard([
@@ -117,32 +164,23 @@
 					page: 'portofolio'
 				},
 				{
-					text: 'HTML From Zero',
-					description: ' 10 case',
-					page: 'htmlfromzero'
+					text: 'My App',
+					description: ' Create New App with javascript and html5 and share it',
+					page: 'myapp'
 				},
 				{
-					text: 'CSS From Zero',
-					description: ' 10 case',
-					page: 'cssfromzero'
+					text: 'Web Dsign',
+					description: ' Create Your Design with HTML5 and css and share it',
+					page: 'dsign'
 				},
 				{
-					text: 'Javascript From Zero',
-					description: ' 10 case',
-					page: 'jsfromzero'
-				},
-				{
-					text: 'Javascript Case',
-					description: ' 10 case',
-					page: 'jscase'
-				},
-				{
-					text: 'Forum',
-					description: ' forum diskusi ',
-					page: 'forums'
+					text: 'My Games',
+					description: ' Create Games With HTML 5 and Share youre game',
+					page: 'dsign'
 				}
 			]))
 			.get())
+
 	</script>
 </body>
 </html>

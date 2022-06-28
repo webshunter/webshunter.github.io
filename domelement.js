@@ -962,7 +962,67 @@ const childes = function(el = null , err = []){
 // app display template
 
 function alert(a){
-    console.log(a);
+    var idAlert = 'alert-'+Date.now();
+    var alertDoc = div()
+        .css('position', 'fixed')
+        .css('width', '100vw')
+        .css('height', '100vh')
+        .css('background', 'rgba(0,0,0,0.8)')
+        .css('z-index', '99999')
+        .css('top', '0')
+        .css('left', '0')
+        .id(idAlert)
+        .css('text-align', 'center')
+        .click(function(event){
+            var close = event.target;
+            var cek = close.getAttribute('panel-alert')
+            if(cek == undefined){
+                close.remove();
+            }
+        })
+        .child(
+            div()
+            .css('display', 'inline-block')
+            .padding('14px')
+            .attr('panel-alert', true)
+            .background('#fff')
+            .color('#333')
+            .css('margin-top', '20px')
+            .css('max-width', '320px')
+            .css('width', '320px')
+            .radius('8px')
+            .radius('8px')
+            .child(
+                p().margin(0).css('text-align', 'left').color('#333').text(a).attr('panel-alert', true)
+            )
+            .child(
+                div().attr('panel-alert', true).css('text-align', 'right').child(
+                    btn().text('ok').size('18px')
+                    .css('outline', 'none')
+                    .css('border', 'none')
+                    .attr('panel-alert', true)
+                    .addModule('idAlert', idAlert)
+                    .css('background', 'transparent')
+                    .cursor('pointer')
+                    .click(function(event){
+                        globalThis[event.target.idAlert].parent.remove();
+                    })
+                )
+            )
+        )
+    document.body.appendChild(alertDoc.get());
+    var result;
+    try {
+        result = eval(`throw 'alert! ${a}';`);
+    } catch (ex) {
+        if (ex !== null && typeof ex !== "undefined") {
+            if (ex.message) ex = ex.message;
+        } else {
+            ex = "An unknown error occurred.";
+        }
+        result = ex;
+        console.log(ex)
+    }
 }
 
 
@@ -1187,4 +1247,8 @@ const CardFotoList = function(fotoSize = 120, fotoUrl = 'https://indowebs.my.id/
         )
       )
   )
+}
+
+const loader = function(){
+    return div().class('lds-dual-ring')
 }

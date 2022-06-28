@@ -1,4 +1,4 @@
-import {actionDate} from './conf.js?v=9';
+import {actionDate} from './conf.js?v=12';
 
 export const calendar = function(a){
 	var calendar = div()

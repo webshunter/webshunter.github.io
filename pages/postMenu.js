@@ -1,6 +1,7 @@
-import {uuid} from '../conf.js';
-import {post} from '../db/db.js';
-import {boxMenusDark} from '../box.js';
+import {uuid, OpenScreen} from '../conf.js?v=12';
+import {post} from '../db/db.js?v=12';
+import {boxMenusDark} from '../box.js?v=12';
+import {postinganCode} from './post.js?v=12';
 export const postMenus = function(){
 	return div().padding('16px')
 	.gridColumn('calc(100% / 4) calc(100% / 4) calc(100% / 4) calc(100% / 4)')
@@ -87,9 +88,13 @@ export const postMenus = function(){
 									table: 'postactivityadmin',
 									data: data
 								}, function(){
-									console.log('save')
+									OpenScreen('full', function(screen){
+										screen.child(
+											postinganCode('', title, id)
+										)
+									})
 								}, function(){
-									console.log('error')
+									alert('Not Connect Server')
 								})
 							})
 						)
@@ -122,6 +127,7 @@ export const postMenus = function(){
 		)
 		.click(function(){
 			GetApp('popupmenupost').flexCenter();
+			GetApp('project-id').val(uuid())
 		})
 	)
 	.id('post-menus-container')
@@ -159,12 +165,38 @@ export const postMenus = function(){
 			}
 		}, function(response){
 			response.forEach(function(a){
-				container.appendChild(boxMenusDark(a.title, a.tanggaldibuat, function(){
-					console.log('open editor')
+				container.appendChild(boxMenusDark(a.title, a.tanggaldibuat, a, function(data){
+					post('https://indowebs.my.id/audit-dev/api.php', {
+							type: 'read',
+							token: localStorage.getItem('token'),
+							table: 'postactivityadmin',
+							select: 'code, caption',
+							conditionAnd: {
+								id: data.dataCode.id
+							}
+						},
+						function(responSe){
+							var id = data.dataCode.id
+							var code = '';
+							var caption = 'type here to describe !';
+							if(responSe.length > 0){
+								code = responSe[0].code;
+								caption = responSe[0].caption;
+							}
+							OpenScreen('full', function(screen){
+								screen.child(
+									postinganCode(code, caption, id)
+								)
+							})
+						}, function(){
+							console.log('connection none')
+						}
+					)
+
 				}).get())
 			})
 		}, function(err){})
-		
+
 		console.log(container)
 	})
 }

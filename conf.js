@@ -1,4 +1,4 @@
-import {darkCard} from './box.js?v=9';
+import {darkCard} from './box.js?v=12';
 
 export const shadow = '0 0 10px #ddf';
 
@@ -65,7 +65,7 @@ export const colorBorderMuted = '#21262d'
 export const userinformation = function() {
 
 	var name = 'Anonim User';
-	
+
 	if(localStorage.getItem('user-online') != undefined){
 		name = localStorage.getItem('user-online')
 	}
@@ -86,7 +86,7 @@ export const b2 = '#21262d'
 export const b3 = '#30363d'
 
 export const frontDescription = function(
-	title = 'Halo Risma Dana', 
+	title = 'Halo Risma Dana',
 	desc = 'Selamat datang di platform javascript course. kenali javascript lebih dalam dan pecahkan setiap kasus untuk mengisi portofolio anda. dan buat aplikasi pertama anda dengan javascript.',
 	func = null
 	){
@@ -94,7 +94,7 @@ export const frontDescription = function(
 			.css('position','relative')
 			.css('overflow','hidden')
 			.child(
-				h1().html(title)
+				h1().css('font-family', 'Segoe-UI').html(title)
 			)
 			.child(
 				div().html(desc)

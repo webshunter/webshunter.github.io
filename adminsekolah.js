@@ -1,12 +1,12 @@
-import {shadow, panelProfile, b1, b3, frontDescription, userinformation, looping, OpenScreen} from './conf.js?v=9'; // load config script
-import {calendar} from './calendar.js?v=9'; // load calendar function
-import {card, darkCard, darkCardPostCode, darkCardIframe} from './box.js?v=9'; // load card
-import {newCanvas, canvasDiv} from './canvas/canvas.js?v=9' // load canvas
-import {loginPage} from './pages/login.js';
-import {registerPage} from './pages/register.js';
-import {post} from './db/db.js';
-import {postinganCode} from './pages/post.js';
-import {postMenus} from './pages/postMenu.js';
+import {shadow, panelProfile, b1, b3, frontDescription, userinformation, looping, OpenScreen} from './conf.js?v=12'; // load config script
+import {calendar} from './calendar.js?v=12'; // load calendar function
+import {card, darkCard, darkCardPostCode, darkCardIframe} from './box.js?v=12'; // load card
+import {newCanvas, canvasDiv} from './canvas/canvas.js?v=12' // load canvas
+import {loginPage} from './pages/login.js?v=12';
+import {registerPage} from './pages/register.js?v=12';
+import {post} from './db/db.js?v=12';
+import {postinganCode} from './pages/post.js?v=12';
+import {postMenus} from './pages/postMenu.js?v=12';
 
 export const sekolahPanel = function(data = []){
 	var panel = div()
@@ -122,6 +122,13 @@ export const contentDashboard = function(data = []){
 			.css('align-items', 'center')
 			.padding('16px')
 			.child(el('i').class('fa-solid fa-camera')).child(el('span').css('margin-left', '10px').text('Post'))
+			.click(function(){
+				OpenScreen('page', function(screen){
+					screen.child(
+						postMenus()
+					)
+				})
+			})
 		)
 		.child(
 			div()
@@ -222,14 +229,6 @@ export const contentDashboard = function(data = []){
 			// 		postinganCode()
 			// 	)
 			// })
-
-
-			OpenScreen('page', function(screen){
-				screen.child(
-					postMenus()
-				)
-			})
-
 
 			setTimeout(function(){
 				console.log('scroll')

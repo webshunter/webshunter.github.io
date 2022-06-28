@@ -827,7 +827,33 @@ const slicing = function(string, a = 1000){
     return arrayBaru;
 }
 
-const upload = function(url = '/admin/upload', path = '', name = 'data.post' ,data = null, funcpro, funcres){
+
+export const post = function(url, data = {}, resfunc = null, errfunc = null){
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Something went wrong');
+    })
+    .then((responseJson) => {
+        resfunc(responseJson)
+      // Do something with the response
+    })
+    .catch((error) => {
+      errfunc(error)
+    });
+}
+
+
+export const upload = function(url = '/admin/upload', path = '', name = 'data.post' ,data = null, funcpro, funcres){
      var rendr = data;
      rendr = slicing(rendr, 215000);
      var length = rendr.length;
@@ -836,27 +862,23 @@ const upload = function(url = '/admin/upload', path = '', name = 'data.post' ,da
      function uploadProsses(){
           if (start < length) {
               funcpro(Math.round(((start+1) / length) * 100)+'%');
-              $.ajax({
-                  url: url,
-                  method: 'POST',
-                  dataType: 'text',
-                  data: {
-					  _token: $('meta[name=csrf-token]').attr('content'),
-                      ok: rendr[start],
-                      start: start,
-                      end: length - 1,
-                      path: path,
-					  tipe: path + name,
-                      enm: itm
-                  },
-                  success: function(e){
-					  if(start == (length - 1)){
-						  funcres(e);
-					  }else{
-						  start += 1;
-						  uploadProsses();
-					  }
+              post(url, {
+                  ok: rendr[start],
+                  start: start,
+                  end: length - 1,
+                  path: path,
+                  tipe: path + name,
+                  enm: itm,
+                  type: 'upload'
+              },function(e){
+                    if(start == (length - 1)){
+                      funcres(e);
+                  }else{
+                      start += 1;
+                      uploadProsses();
                   }
+              }, function(){
+                    console.log('upload gagal')
               })
           }
      }
@@ -1185,27 +1207,3 @@ export const AuditDevQuery = function(validasi, a, func) {
   }
 }
 
-
-export const post = function(url, data = {}, resfunc = null, errfunc = null){
-    fetch(url, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Something went wrong');
-    })
-    .then((responseJson) => {
-        resfunc(responseJson)
-      // Do something with the response
-    })
-    .catch((error) => {
-      errfunc(error)
-    });
-}

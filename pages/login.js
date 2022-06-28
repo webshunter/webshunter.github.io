@@ -1,6 +1,6 @@
-import {post} from '../db/db.js';
-import {registerPage} from './register.js';
-import {OpenScreen} from '../conf.js'
+import {post} from '../db/db.js?v=12';
+import {registerPage} from './register.js?v=12';
+import {OpenScreen} from '../conf.js?v=12'
 export const loginPage = function(){
 	return div()
 	.height('100%')

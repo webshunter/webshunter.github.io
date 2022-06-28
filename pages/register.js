@@ -1,5 +1,5 @@
-import {post} from '../db/db.js';
-import {uuid} from '../conf.js';
+import {post} from '../db/db.js?v=12';
+import {uuid} from '../conf.js?v=12';
 export const registerPage = function(userlevel = undefined){
 	return div()
 	.height('100%')
@@ -66,7 +66,7 @@ export const registerPage = function(userlevel = undefined){
 						var level = GetApp('register-level').val().val;
 						var username = GetApp('register-username').val().val;
 						var password = GetApp('register-password').val().val;
-						
+
 						var data = {
 								username: username,
 								password: password,
