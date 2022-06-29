@@ -60,6 +60,12 @@ export const postinganCode = function(data = '', caption = 'type here to code !'
 					.getDoc().setValue(globalThis[event.target.code]['html'])
 					globalThis[event.target.idplay].parent.editorcode
 					.setOption('mode', {name: "text/html", globalVars: true})
+					if(globalThis.cursorActiveCM['html'] != undefined){
+						var cursorA = globalThis.cursorActiveCM['html'];
+						globalThis[event.target.idplay].parent.editorcode.focus()
+						globalThis[event.target.idplay].parent.editorcode.setCursor({line: cursorA.line, ch: cursorA.ch})
+						globalThis[event.target.idplay].parent.editorcode.scrollTo(cursorA.left, cursorA.top)				
+					}
 				})
 			)
 			.child(
@@ -80,6 +86,13 @@ export const postinganCode = function(data = '', caption = 'type here to code !'
 					.getDoc().setValue(globalThis[event.target.code]['style'])
 					globalThis[event.target.idplay].parent.editorcode
 					.setOption('mode', {name: "css", globalVars: true})
+					if(globalThis.cursorActiveCM['style'] != undefined){
+						var cursorA = globalThis.cursorActiveCM['style'];
+						console.log(globalThis.cursorActiveCM)
+						globalThis[event.target.idplay].parent.editorcode.focus()
+						globalThis[event.target.idplay].parent.editorcode.setCursor({line: cursorA.line, ch: cursorA.ch})
+						globalThis[event.target.idplay].parent.editorcode.scrollTo(cursorA.left, cursorA.top)				
+					}
 				})
 			)
 			.child(
@@ -100,13 +113,22 @@ export const postinganCode = function(data = '', caption = 'type here to code !'
 					.getDoc().setValue(globalThis[event.target.code]['script'])
 					globalThis[event.target.idplay].parent.editorcode
 					.setOption('mode', {name: "javascript", globalVars: true})
+					if(globalThis.cursorActiveCM['script'] != undefined){
+						var cursorA = globalThis.cursorActiveCM['script'];
+						console.log(cursorA);
+						globalThis[event.target.idplay].parent.editorcode.focus()
+						globalThis[event.target.idplay].parent.editorcode.setCursor({line: cursorA.line, ch: cursorA.ch})
+						globalThis[event.target.idplay].parent.editorcode.scrollTo(cursorA.left, cursorA.top)				
+					}
 				})
 			)
 			.child(
 				div().child(
 					el('textarea').addModule('idsave', id).id(codeplay).color('#333').css('display', 'none').load(function(e){
 
-
+						if(globalThis.cursorActiveCM == undefined){
+							globalThis.cursorActiveCM = {}
+						}
 
 						function getSnippets(codemirror) {
 
@@ -171,10 +193,24 @@ export const postinganCode = function(data = '', caption = 'type here to code !'
 						editor.getDoc().setValue(html);
 						editor.setSize("100%", "calc(100vh - 34px)");
 						editor.idsave = e.el.idsave;
+						CodeMirror.on(editor, "cursorActivity", (instance, obj)=>{ 
+							if(globalThis.cursorActiveCM == undefined){
+								globalThis.cursorActiveCM = {}
+							}
+							if(instance.doc.getCursor().line != 0 || instance.doc.getCursor().ch != 0){
+								globalThis.cursorActiveCM[globalThis.codeplayDataPostActive[instance.ideditor]] = instance.doc.getCursor()
+								setTimeout(()=>{
+									globalThis.cursorActiveCM[globalThis.codeplayDataPostActive[instance.ideditor]]['top'] = instance.doc.scrollTop
+									globalThis.cursorActiveCM[globalThis.codeplayDataPostActive[instance.ideditor]]['left'] = instance.doc.scrollLeft
+								},500)
+								console.log(instance.doc)
+							}
+						})
 						e.el.editorcode = editor;
 						editor.on('change', function(e){
 							clearTimeout(delay);
 		        	delay = setTimeout(function(){
+		        		if(globalThis[e.post][globalThis.codeplayDataPostActive[e.ideditor]] != e.getValue()){
 								globalThis[e.post][globalThis.codeplayDataPostActive[e.ideditor]] = e.getValue()
 								dbwrite(e.idsave, globalThis[e.post])
 								var f = globalThis['views-'+e.ideditor].parent;
@@ -225,7 +261,8 @@ export const postinganCode = function(data = '', caption = 'type here to code !'
 											}
 											`)
 										).get())
-							}, 300);
+								}
+							}, 1000);
 
 
 

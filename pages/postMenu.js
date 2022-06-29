@@ -134,7 +134,7 @@ export const postMenus = function(){
 	.resize(function(e){
 		var container = e.el;
 		if(container.clientWidth >= 1250 ){
-			container.style.gridTemplateColumns = ' calc(100% / 4) calc(100% / 4) calc(100% / 4)'
+			container.style.gridTemplateColumns = ' calc(100% / 4) calc(100% / 4) calc(100% / 4) calc(100% / 4)'
 		}else if(container.clientWidth < 1250 && container.clientWidth >= 1000){
 			container.style.gridTemplateColumns = ' calc(100% / 3) calc(100% / 3) calc(100% / 3)'
 		}else if(container.clientWidth < 1000 && container.clientWidth >= 600){
@@ -146,7 +146,7 @@ export const postMenus = function(){
 	.load(function(e){
 		var container = e.el;
 		if(container.clientWidth >= 1250 ){
-			container.style.gridTemplateColumns = ' calc(100% / 4) calc(100% / 4) calc(100% / 4)'
+			container.style.gridTemplateColumns = ' calc(100% / 4) calc(100% / 4) calc(100% / 4) calc(100% / 4)'
 		}else if(container.clientWidth < 1250 && container.clientWidth >= 1000){
 			container.style.gridTemplateColumns = ' calc(100% / 3) calc(100% / 3) calc(100% / 3)'
 		}else if(container.clientWidth < 1000 && container.clientWidth >= 600){
