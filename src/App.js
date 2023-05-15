@@ -1,17 +1,21 @@
 import logo from './logo.svg';
+import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
+import Layout from './pages/layout';
+import Home from './pages/home';
+import PageNotFound from './pages/p404';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className='text-3xl pt-10'>
-          Wellcome to Webshunter
-        </h1>
-        
-      </header>
-    </div>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          {/* <Route path="blogs" element={<Blogs />} /> */}
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
+      </Routes>
+    </HashRouter>
   );
 }
 
