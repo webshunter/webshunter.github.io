@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderImage from "../../component/header";
 import Slider from "../../component/carousel";
+import Footer from "../../component/footer";
 
 
 function Home() {
@@ -9,12 +10,12 @@ function Home() {
             <HeaderImage dat={{
                 title: 'Webshunter',
                 subTitle: 'Apps & Website Developer',
-                bg: '/bg1.jpg'
+                bg: '/bg.avif'
             }}  />
 
             <Slider props={{
-                title: 'Authentic',
-                subtitle: 'Performance in GWK Cultural Park with downloadable schedule',
+                title: 'Portofolio',
+                subtitle: 'List daftar project yang pernah dikerjakan.',
                 text: [
                     {
                         title: "Title",
@@ -37,7 +38,7 @@ function Home() {
                 ]
             }} />
 
-            <h1>Home</h1>
+            <Footer />
         </>
     )
 }
